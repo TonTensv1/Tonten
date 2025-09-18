@@ -3,194 +3,149 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GoPet Tòn Ten - Đại Chiến Thú Ảo</title>
-  <meta name="description" content="Game cày chay lên top, siêng là có tất cả. GoPet Tòn Ten có nhiều sự kiện đua top, giftcode cho tân thủ." />
-  <meta name="keywords" content="gopet, tòn ten, game thú ảo, game java, gopet tenn ten, gopet dai chien" />
-  <meta name="robots" content="index, follow">
+  <title>Gopet Tòn Ten - Game thú ải đại chiến</title>
+  <meta name="description" content="Game cày chay lên top, chỉ cần siêng là có tất cả. GoPet Tòn Ten - Sự kiện đua top thường xuyên." />
 
-  <!-- Open Graph / Social -->
+  <!-- Canonical & Social -->
+  <link rel="canonical" href="https://tonten.vercel.app/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="GoPet Tòn Ten - Đại Chiến Thú Ảo">
-  <meta property="og:description" content="Game cày chay lên top, nhiều giftcode & event. Tham gia cộng đồng ngay!">
-  <meta property="og:image" content="/og-banner.png">
-  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta property="og:title" content="Gopet Tòn Ten - Game nông trại vui vẻ">
+  <meta property="og:description" content="Game cày chay lên top, chỉ cần siêng là có tất cả.">
+  <meta property="og:url" content="https://tonten.vercel.app/">
+  <meta property="og:image" content="https://tonten.vercel.app/og-banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gopet Tòn Ten - Game nông trại vui vẻ">
+  <meta name="twitter:description" content="Game cày chay lên top, chỉ cần siêng là có tất cả.">
+  <meta name="twitter:image" content="https://tonten.vercel.app/og-banner.png">
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.png" type="image/png">
 
   <style>
-    :root{
-      --bg:#0b1020;--card:#101736;--pri:#7c9eff;--pri2:#56e0ff;--txt:#e9eefc;--muted:#a9b6db;--ok:#22c55e
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:"Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b1020 0%,#0e1330 100%);color:var(--txt)}
+    :root{--bg:#0b1020;--card:#101736;--pri:#7c9eff;--pri-2:#56e0ff;--txt:#e9eefc;--muted:#a9b6db}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:"Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      background:radial-gradient(1200px 500px at 80% -10%, rgba(124,158,255,.12), transparent 60%),
+                 radial-gradient(1200px 700px at -10% 10%, rgba(86,224,255,.10), transparent 60%),var(--bg);color:var(--txt)}
     a{color:inherit;text-decoration:none}
-    .container{max-width:980px;margin:0 auto;padding:20px}
-    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:rgba(11,16,32,.7);border-bottom:1px solid #20274a;z-index:50}
-    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(45deg,var(--pri),var(--pri2))}
-    .menu{display:flex;gap:14px;flex-wrap:wrap}
-    .menu a{padding:10px 12px;border-radius:999px;color:var(--muted)}
-    .menu a:hover{background:rgba(124,158,255,.12);color:var(--txt)}
-
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:36px 0}
-    .card{background:linear-gradient(180deg,#101736 0%,#0e1533 100%);border:1px solid #1b2350;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .card.pad{padding:20px}
-    h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 8px}
-    p.lead{color:var(--muted);font-size:clamp(14px,2.2vw,18px)}
-    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid #1e2652;transition:.2s;background:#121a3e}
-    .btn:hover{transform:translateY(-1px);border-color:#2a3370}
-    .btn.primary{background:linear-gradient(90deg,var(--pri),var(--pri2));color:#0a0f20;font-weight:800}
-    .tag{display:inline-block;padding:4px 10px;border:1px solid #273164;border-radius:999px;color:var(--muted);font-size:12px}
-
-    section{scroll-margin-top:80px}
-    h2{font-size:clamp(22px,3vw,30px);margin:18px 0}
-    .grid{display:grid;gap:16px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    @media(max-width:860px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:1fr}.grid.cols-2{grid-template-columns:1fr}}
-
-    .kvd{display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start}
-    .kvd .num{width:64px;height:64px;border-radius:14px;background:#0d1433;border:1px solid #1b2350;display:grid;place-items:center;font-weight:800;color:var(--pri)}
-
-    .list{display:grid;gap:10px}
-    .code{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;background:#0e1430;border:1px solid #1b2350;border-radius:12px;padding:12px}
-    .muted{color:var(--muted)}
-    footer{margin-top:28px;padding:24px 0;color:#8fa1d8;border-top:1px dashed #243067}
+    .container{max-width:1100px;margin:0 auto;padding:16px}
+    header{position:sticky;top:0;z-index:30;backdrop-filter:saturate(120%) blur(8px);background:rgba(11,16,32,.5);border-bottom:1px solid rgba(124,158,255,.15)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+    .logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--pri),var(--pri-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#0b1020;box-shadow:0 6px 20px rgba(124,158,255,.35)}
+    .menu{display:flex;gap:18px;flex-wrap:wrap}
+    .menu a{color:var(--muted);font-weight:600;font-size:14px;opacity:.95}
+    .menu a:hover{color:var(--txt)}
+    .hero{padding:64px 0 36px;text-align:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(124,158,255,.12);border:1px solid rgba(124,158,255,.25);color:var(--pri);font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+    h1{margin:14px auto 10px;font-size:clamp(28px,5vw,46px);line-height:1.08}
+    .subtitle{color:var(--muted);max-width:760px;margin:10px auto 0;font-size:16px}
+    .cta-bar{display:flex;justify-content:center;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:1px solid rgba(124,158,255,.3);background:linear-gradient(180deg, rgba(124,158,255,.18), rgba(124,158,255,.06));color:var(--txt);box-shadow:0 8px 24px rgba(86,224,255,.12);transition:transform .12s ease, box-shadow .12s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(86,224,255,.18)}
+    section{padding:48px 0}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));border:1px solid rgba(124,158,255,.18);border-radius:16px;padding:20px}
+    h2{font-size:22px;margin:0 0 12px}
+    p{margin:0 0 12px;line-height:1.6}
+    footer{border-top:1px solid rgba(124,158,255,.18);color:var(--muted);padding:24px 0 60px}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(12,1fr)}
+    .col-8{grid-column:span 8}
+    .col-4{grid-column:span 4}
+    @media (max-width:860px){.col-8,.col-4{grid-column:1 / -1}}
+    .socials{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(124,158,255,.25);color:var(--txt);background:rgba(124,158,255,.06);font-weight:700}
+    .dl-list{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+    .dl{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(124,158,255,.28);background:rgba(124,158,255,.08);font-weight:800}
+    .dl small{color:var(--muted);font-weight:700}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="brand"><span class="dot"></span> GoPet Tòn Ten</div>
-      <nav class="menu">
+      <a class="brand" href="#top" aria-label="Gopet Tòn Ten - về đầu trang">
+        <span class="logo">GP</span><span>Gopet Tòn Ten</span>
+      </a>
+      <nav class="menu" aria-label="Điều hướng chính">
         <a href="#gioi-thieu">Giới thiệu</a>
         <a href="#giftcode">Giftcode</a>
-        <a href="#cong-dong">Facebook & Zalo</a>
-        <a href="#tai-game">Tải xuống</a>
+        <a href="#su-kien">Sự kiện</a>
+        <a href="#download">Download</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
+  <main id="top" class="container">
     <section class="hero">
-      <div class="card pad">
-        <span class="tag">Game Java • Cày chay lên top</span>
-        <h1>GoPet Tòn Ten — Đại Chiến Thú Ảo</h1>
-        <p class="lead">Server vui vẻ, nhiều event & quà cho tân thủ. Chỉ cần siêng là có tất cả. Tham gia cộng đồng để nhận giftcode mỗi tuần!</p>
-        <div class="buttons">
-          <a class="btn primary" href="#tai-game">⬇️ Tải game</a>
-          <a class="btn" href="#giftcode">🎁 Xem giftcode</a>
-          <a class="btn" href="#cong-dong">👥 Vào cộng đồng</a>
-        </div>
+      <span class="badge">Sự kiện đua top diễn ra thường xuyên</span>
+      <h1>Game cày chay lên top, chỉ cần siêng là có tất cả.</h1>
+      <p class="subtitle">GoPet là một trò chơi di động thuộc thể loại nuôi thú ảo và chiến đấu, được phát triển bởi Mecorp và được nhiều người yêu thích trong giai đoạn đầu những năm 2010.</p>
+      <div class="cta-bar">
+        <a class="btn" href="#download">Tải game ngay</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.facebook.com/gopettonten">Facebook</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://zalo.me/g/xeefah525">Zalo</a>
       </div>
-      <div class="card pad">
-        <h2 id="gioi-thieu">Giới thiệu</h2>
-        <div class="grid">
-          <div class="kvd">
-            <div class="num">1</div>
-            <div>
-              <strong>Cày chay là chính</strong>
-              <p class="muted">Không pay-to-win. Nhiệm vụ, hoạt động ngày/tuần giúp bạn phát triển đều.</p>
-            </div>
+    </section>
+
+    <section id="gioi-thieu">
+      <div class="grid">
+        <div class="col-8">
+          <div class="card">
+            <h2>Giới thiệu</h2>
+            <p>GoPet từng là sân chơi quen thuộc cho các game thủ Java và Android, nơi bạn hóa thân thành huấn luyện viên, nuôi dưỡng, huấn luyện và chiến đấu cùng các thú cưng ảo. Gameplay sống động với hệ thống cường hóa, tiến hóa, map rộng, nhiệm vụ đa dạng và cùng bạn bè khám phá thế giới kỳ diệu của GoPet Tèn Tèn.</p>
+            <p><em>Những ai từng chơi đúng là “một bầu trời tuổi thơ” khó phai.</em></p>
           </div>
-          <div class="kvd">
-            <div class="num">2</div>
-            <div>
-              <strong>Sự kiện liên tục</strong>
-              <p class="muted">Đua top định kỳ, quà đăng nhập, giftcode dịp lễ và cập nhật thường xuyên.</p>
-            </div>
-          </div>
-          <div class="kvd">
-            <div class="num">3</div>
-            <div>
-              <strong>Cộng đồng thân thiện</strong>
-              <p class="muted">Nhập hội Facebook/Zalo để được hỗ trợ nhanh, share kinh nghiệm & kết bạn.</p>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h2>Liên hệ nhanh</h2>
+            <div class="socials">
+              <a class="pill" target="_blank" rel="noopener" href="https://www.facebook.com/gopettonten">📘 Facebook</a>
+              <a class="pill" target="_blank" rel="noopener" href="https://zalo.me/g/xeefah525">💬 Zalo</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="giftcode" class="card pad">
-      <h2>🎁 Giftcode</h2>
-      <p class="muted">Dùng trong mục <em>Giftcode</em> của game. Chữ hoa/thường đều được (không có khoảng trắng).</p>
-      <div class="grid cols-2">
-        <div>
-          <h3>Code cố định</h3>
-          <ul class="list">
-            <li><span class="tag">tân thủ</span> <code class="code">TANTHU</code></li>
-            <li><span class="tag">sự kiện</span> <code class="code">MUNGLEQUOCKHANH</code></li>
-            <li><span class="tag">đặc biệt</span> <code class="code">CHUTICHHCHIMINHMUONNAM</code></li>
-            <li><span class="tag">ổn định</span> <code class="code">BAOTRILIENTUC</code></li>
-          </ul>
-        </div>
-        <div>
-          <h3>Code tuần (ví dụ)</h3>
-          <ul class="list">
-            <li><code class="code">TUAN1</code>, <code class="code">TUAN2</code>, <code class="code">TUAN3</code>, <code class="code">TUAN4</code></li>
-            <li><code class="code">TUAN5</code>, <code class="code">TUAN6</code>, <code class="code">TUAN7</code>, <code class="code">TUAN8</code></li>
-            <li><span class="muted">* Admin có thể thay đổi/đổi mới theo tuần — cập nhật trên Facebook/Zalo.</span></li>
-          </ul>
-        </div>
+    <section id="giftcode">
+      <div class="card">
+        <h2>Giftcode</h2>
+        <p><strong>Code Tân thủ:</strong> tanthu, tuan1, tuan2, tuan3, denbubaotri, denbubaotri2, tuan4, tuan5, tuan6, tuan7, tuan8, denbubichocan, mungsinhnhathuongdiemthui, munglequockhanh, munglequockhanh2, chutichhochiminhmuonnam, denbubichocan2, baotrilientuc, denbuvpslo, open2thang, longvuvip</p>
       </div>
     </section>
 
-    <section id="cong-dong" class="card pad">
-      <h2>👥 Cộng đồng: Facebook & Zalo</h2>
-      <p class="muted">Tham gia nhóm để hỏi đáp, nắm event sớm và nhận giftcode.</p>
-      <div class="buttons">
-        <a class="btn" href="https://www.facebook.com/share/1aC1mxMND4/" target="_blank" rel="noopener">📘 Fanpage / Share Facebook</a>
-        <a class="btn" href="https://zalo.me/g/xeefah525" target="_blank" rel="noopener">💬 Group Zalo</a>
+    <section id="su-kien">
+      <div class="card">
+        <h2>Sự kiện</h2>
+        <p>Sự kiện đua top được tổ chức thường xuyên. Theo dõi Facebook/Zalo để cập nhật lịch đua và phần thưởng.</p>
       </div>
     </section>
 
-    <section id="tai-game" class="card pad">
-      <h2>⬇️ Tải game</h2>
-      <p class="muted">Bản Java (.jar). Dành cho giả lập/thiết bị hỗ trợ Java. Không có bản Windows hoặc APK Android trong trang này.</p>
-      <div class="grid cols-2">
-        <div class="card pad">
-          <h3>TonTen (JAR)</h3>
-          <p class="muted">Link Google Drive chính thức.</p>
-          <a class="btn primary" href="https://drive.google.com/file/d/1jRoxlLzTSLI1AaUh8bAljAH1IdJtEVN0/view?usp=drivesdk" target="_blank" rel="noopener">Tải TonTen.jar</a>
+    <section id="download">
+      <div class="card">
+        <h2>Download</h2>
+        <p>Chọn bản phù hợp để tải về và chơi trên máy Java/giả lập:</p>
+        <div class="dl-list">
+          <!-- Link tải trực tiếp từ Google Drive -->
+          <a class="dl" target="_blank" rel="noopener"
+             href="https://drive.google.com/uc?export=download&id=1jRoxlLzTSLI1AaUh8bAljAH1IdJtEVN0">
+             ☕ <strong>Java thường</strong><small>&nbsp;(TonTen.jar)</small>
+          </a>
+          <a class="dl" target="_blank" rel="noopener"
+             href="https://drive.google.com/uc?export=download&id=1I7n7atll-Do-R9dKZIVvMz6N5qifjI4n">
+             ☕⚡ <strong>Java mod speed</strong><small>&nbsp;(Gopet_xld_Ton_ten.jar)</small>
+          </a>
         </div>
-        <div class="card pad">
-          <h3>GoPet XLD TonTen (JAR)</h3>
-          <p class="muted">Bản xld — lưu ý đọc hướng dẫn kèm theo (nếu có).</p>
-          <a class="btn primary" href="https://drive.google.com/file/d/1I7n7atll-Do-R9dKZIVvMz6N5qifjI4n/view?usp=drivesdk" target="_blank" rel="noopener">Tải GoPet_XLD.jar</a>
-        </div>
+        <p style="color:#a9b6db;margin-top:10px"><small>Nếu Drive báo giới hạn tải, mở bằng trình duyệt khác hoặc dùng link “Mở trên Drive” dự phòng.</small></p>
       </div>
-
-      <details style="margin-top:12px">
-        <summary>❓ Cách chạy file .jar</summary>
-        <ol class="muted">
-          <li>Cài Java Runtime (JRE) trên máy tính nếu chưa có.</li>
-          <li>Nhấp đôi vào file <code class="code">.jar</code> để chạy; nếu không mở được, chạy lệnh <code class="code">java -jar TenFile.jar</code>.</li>
-          <li>Hoặc dùng giả lập Java/điện thoại hỗ trợ J2ME.</li>
-        </ol>
-      </details>
     </section>
-
-    <footer>
-      <div class="container">
-        © <span id="y"></span> GoPet Tòn Ten • Fanmade site. Không liên kết với đơn vị chủ quản.
-      </div>
-    </footer>
   </main>
 
-  <script>
-    // năm động trong footer
-    document.getElementById('y').textContent = new Date().getFullYear();
-    // cuộn mượt
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      const id = a.getAttribute('href');
-      if(id.length > 1){
-        a.addEventListener('click', e=>{
-          e.preventDefault();
-          document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
-        });
-      }
-    })
-  </script>
+  <footer>
+    <div class="container">© 2025 Gopet Tòn Ten. All rights reserved.</div>
+  </footer>
 </body>
 </html>
